@@ -10,7 +10,7 @@
 html,body{width:100%;height:100%;overflow:hidden;background:#000;
   font-family:'Barlow Condensed',sans-serif;}
 .wrap{position:fixed;inset:0;overflow:hidden;}
-.sl{position:absolute;inset:0;opacity:0;transform:scale(.98);
+.sl{position:absolute;inset:0;opacity:1;transform:scale(1);
   transition:opacity .55s ease,transform .55s ease;pointer-events:none;
   background:#000;display:flex;flex-direction:column;}
 .sl.on{opacity:1;transform:scale(1);pointer-events:auto;}
@@ -248,8 +248,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;
   </div>
 </div>
 </div></div>
-<div class="pbar-wrap"><div class="pbar-fill" id="pf"></div></div>
-<div class="dots-wrap"><div class="dot"></div></div>
+</div>
+</div>
 <script>
 function goFS(){var el=document.documentElement;
   try{if(el.requestFullscreen)el.requestFullscreen();
@@ -258,24 +258,11 @@ goFS();setTimeout(goFS,500);setTimeout(goFS,1500);setTimeout(goFS,3000);
 ['click','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,goFS,{once:true,passive:true});});
 document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&!document.webkitFullscreenElement)setTimeout(goFS,500);});
 document.addEventListener('webkitfullscreenchange',function(){if(!document.fullscreenElement&&!document.webkitFullscreenElement)setTimeout(goFS,500);});
-
-var D=12000,c=0,tot=1,tm;
-var sls=document.querySelectorAll('.sl'),dts=document.querySelectorAll('.dot'),pf=document.getElementById('pf');
-function rp(){pf.style.transition='none';pf.style.width='100%';
-  requestAnimationFrame(function(){requestAnimationFrame(function(){pf.style.transition='width '+D+'ms linear';pf.style.width='0%';});});}
-function go(n){
-  sls[c].classList.remove('on');sls[c].classList.add('out');
-  var p=c;setTimeout(function(){sls[p].classList.remove('out');},600);
-  c=n%tot;sls[c].classList.add('on');
-  dts.forEach(function(d,i){d.classList.toggle('on',i===c);});rp();}
-function nx(){go((c+1)%tot);clearTimeout(tm);tm=setTimeout(nx,D);}
-sls[0].classList.add('on');rp();tm=setTimeout(nx,D);
-
 setInterval(function(){
   try{document.dispatchEvent(new MouseEvent('mousemove',{bubbles:true,cancelable:true,
     clientX:Math.floor(Math.random()*window.innerWidth),clientY:Math.floor(Math.random()*window.innerHeight)}));}catch(e){}
   document.body.style.opacity='0.9999';
   setTimeout(function(){document.body.style.opacity='1';},100);
-},120000);
+},60000);
 </script>
 </body></html>

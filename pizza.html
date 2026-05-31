@@ -271,7 +271,7 @@ goFS();setTimeout(goFS,500);setTimeout(goFS,1500);setTimeout(goFS,3000);
 document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&!document.webkitFullscreenElement)setTimeout(goFS,500);});
 document.addEventListener('webkitfullscreenchange',function(){if(!document.fullscreenElement&&!document.webkitFullscreenElement)setTimeout(goFS,500);});
 
-var D=12000,c=0,tot=3,tm;
+var D=20000,c=0,tot=3,tm;
 var sls=document.querySelectorAll('.sl'),dts=document.querySelectorAll('.dot'),pf=document.getElementById('pf');
 function rp(){pf.style.transition='none';pf.style.width='100%';
   requestAnimationFrame(function(){requestAnimationFrame(function(){pf.style.transition='width '+D+'ms linear';pf.style.width='0%';});});}
