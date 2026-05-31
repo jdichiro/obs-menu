@@ -263,27 +263,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;
 <div class="pbar-wrap"><div class="pbar-fill" id="pf"></div></div>
 <div class="dots-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
 <script>
-(function(){
-  var W=1920,H=1080;
-  function scale(){
-    var sx=window.innerWidth/W, sy=window.innerHeight/H;
-    var s=Math.min(sx,sy);
-    var ox=(window.innerWidth-W*s)/2;
-    var oy=(window.innerHeight-H*s)/2;
-    document.documentElement.style.cssText=[
-      'width:'+W+'px',
-      'height:'+H+'px',
-      'transform-origin:0 0',
-      'transform:translate('+ox+'px,'+oy+'px) scale('+s+')',
-      'overflow:hidden',
-      'position:fixed',
-      'top:0','left:0'
-    ].join(';');
-    document.body.style.cssText='width:'+W+'px;height:'+H+'px;overflow:hidden;';
-  }
-  scale();
-  window.addEventListener('resize',scale);
-})();
+
 
 function goFS(){var el=document.documentElement;
   try{if(el.requestFullscreen)el.requestFullscreen();
