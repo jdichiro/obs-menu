@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Obsession Menu</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+    #slide {
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      display: block;
+    }
+    /* Anti-screensaver: invisible 1x1 video loop */
+    #antisaver {
+      position: fixed;
+      width: 1px; height: 1px;
+      opacity: 0.01;
+      bottom: 0; right: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <img id="slide" src="OBS-TVMenu-Screen2.png" alt="Menu" />
+
+  <!-- Anti-screensaver invisible video -->
+  <video id="antisaver" autoplay muted loop playsinline>
+    <source src="data:video/mp4;base64,AAAAIGZ0eXBpc29tAAACAGlzb20=" type="video/mp4"/>
+  </video>
+
+  <script>
+    const images = [
+      'OBS-TVMenu-Screen2.png',
+      'OBS-TVMenu-Screen3.png'
+    ];
+    let current = 0;
+    const slide = document.getElementById('slide');
+
+    function nextSlide() {
+      current = (current + 1) % images.length;
+      slide.src = images[current];
+    }
+
+    // Rotate every 20 seconds
+    setInterval(nextSlide, 20000);
+
+    // Reload page every hour to pick up any updates
+    setTimeout(() => location.reload(), 60 * 60 * 1000);
+
+    // Keep anti-screensaver video playing
+    const vid = document.getElementById('antisaver');
+    vid.play().catch(() => {});
+  </script>
+
+</body>
+</html>
